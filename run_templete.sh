@@ -9,44 +9,78 @@ set -o errexit
 
 
 . ./echo_color.lib
+. ./utils.lib
 
-get_cert()
+SUPPORTED_CMD="get,build"
+SUPPORTED_TARGETS="source,doc"
+
+EXEC_CMD=""
+EXEC_ITEMS_LIST=""
+
+get_source()
 {
-    echoY "Getting certs..."
+    echoY "Getting source..."
+}
+
+build_source()
+{
+    echoY "Building source..."
+}
+
+get_doc()
+{
+    echoY "Getting doc..."
+}
+
+build_doc()
+{
+    echoY "Building doc..."
+}
+
+
+
+get_items_func()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+build_items_func()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
 }
 
 usage_func()
 {
+
     echoY "Usage:"
-    echoY "./run.sh -c get -t cert"
-    echoY "-c:Operating command."
-    echoY "-t:Operating target."
-    echo ""
+    echoY './run_templete.sh -c <cmd> -l "<item list>"'
+    echoY "eg:\n./run_templete.sh -c get -l \"source,doc\""
+    echoY "eg:\n./run_templete.sh -c build -l \"source,doc\""
 
-    echoY "Supported commands:"
-    echoY "[ get ]"
-    echo ""
-
-    echoY "Supported target:"
-    echoY "[ cert ]"
-    echo ""
+    echoC "Supported cmd:"
+    echo "${SUPPORTED_CMD}"
+    echoC "Supported items:"
+    echo "${SUPPORTED_TARGETS}"
     
 }
 
-EXEC_COMMAND=""
-EXEC_TARGET=""
-
 no_args="true"
-while getopts "c:t:" opts
+while getopts "c:l:" opts
 do
     case $opts in
         c)
-              # Execute command
-              EXEC_COMMAND=$OPTARG
+              # cmd
+              EXEC_CMD=$OPTARG
               ;;
-        t)
-              # Executing target
-              EXEC_TARGET=$OPTARG
+        l)
+              # items list
+              EXEC_ITEMS_LIST=$OPTARG
               ;;
         :)
             echo "The option -$OPTARG requires an argument."
@@ -67,8 +101,20 @@ do
 done
 
 [[ "$no_args" == "true" ]] && { usage_func; exit 1; }
+#[ $# -lt 1 ] && echoR "Invalid args count:$# " && usage_func && exit 1
 
-exec_operation=${EXEC_COMMAND}_${EXEC_TARGET}
 
-${exec_operation}
+case ${EXEC_CMD} in
+    "get")
+        get_items_func ${EXEC_CMD} ${EXEC_ITEMS_LIST}
+        ;;
+    "build")
+        build_items_func ${EXEC_CMD} ${EXEC_ITEMS_LIST}
+        ;;
+    "*")
+        echoR "Unsupport cmd:${EXEC_CMD}"
+        ;;
+esac
+
+
 
