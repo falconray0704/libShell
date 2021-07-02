@@ -34,4 +34,35 @@ get_iether_MAC()
     echo ${MAC_val}
 }
 
+docker_os()
+{
+    case $(uname -s) in
+    "Linux")
+        echo "linux"
+        ;;
+    *)
+        echoR "Unknown os: $(uname -s)"
+        exit 1
+    esac
+}
+
+os_arch()
+{
+    echo $(uname -m)
+}
+
+docker_arch()
+{
+    case $(os_arch) in
+    "x86_64")
+        echo "amd64"
+        ;;
+    "armv7l")
+        echo "arm"
+        ;;
+    *)
+        echoR "Unknown arch: $(os_arch)"
+        exit 1
+    esac 
+}
 

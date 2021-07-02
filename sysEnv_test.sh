@@ -18,6 +18,10 @@ echoY "os distribution number: ${OS_DISTRIBUTION_NUMBER}"
 OS_DISTRIBUTION_NAME=$(os_distribution_name)
 echoY "os distribution name: ${OS_DISTRIBUTION_NAME}"
 
+echoY "os arch name: $(os_arch)"
+echoY "docker arch name: $(docker_arch)"
+
+echoY "docker os type: $(docker_os)"
 
 is_root_func
 echoG "Runing as root."
