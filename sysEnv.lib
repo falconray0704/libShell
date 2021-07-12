@@ -61,8 +61,18 @@ docker_arch()
         echo "arm"
         ;;
     *)
-        echoR "Unknown arch: $(os_arch)"
-        exit 1
+        echo ""
     esac 
+}
+
+arm_version()
+{
+    case $(os_arch) in
+    "armv7l")
+        echo "v7"
+        ;;
+    *)
+       echo ""
+    esac
 }
 

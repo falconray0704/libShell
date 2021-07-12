@@ -23,5 +23,13 @@ echoY "docker arch name: $(docker_arch)"
 
 echoY "docker os type: $(docker_os)"
 
+VAL_ARM_VERSION=$(arm_version)
+if [ -z ${VAL_ARM_VERSION} ]
+then
+    echoR "CPU arch is not ARM!!!"
+else
+    echo "CPU arm version: ${VAL_ARM_VERSION}"
+fi
+
 is_root_func
 echoG "Runing as root."
