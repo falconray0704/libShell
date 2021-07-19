@@ -53,6 +53,7 @@ os_arch()
 
 docker_arch()
 {
+    # refer to: https://github.com/docker-library/official-images#multiple-architectures
     case $(os_arch) in
     "x86_64")
         echo "amd64"
@@ -65,14 +66,15 @@ docker_arch()
     esac 
 }
 
-docker_arch_name()
+docker_tag_arch()
 {
+    # refer to the tags in: https://hub.docker.com/_/ubuntu?tab=tags&page=1&ordering=last_updated
     case $(os_arch) in
     "x86_64")
         echo "amd64"
         ;;
     "armv7l")
-        echo "arm"
+        echo "arm/v7"
         ;;
     *)
         echo ""

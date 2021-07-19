@@ -19,8 +19,8 @@ OS_DISTRIBUTION_NAME=$(os_distribution_name)
 echoY "os distribution name: ${OS_DISTRIBUTION_NAME}"
 
 echoY "os arch name: $(os_arch)"
-echoY "docker arch: $(docker_arch_name)"
-echoY "docker arch name: $(docker_arch_name)"
+echoY "docker arch: $(docker_arch)"
+echoY "docker tag arch: $(docker_tag_arch)"
 
 echoY "docker os type: $(docker_os)"
 
