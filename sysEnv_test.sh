@@ -1,7 +1,9 @@
 #!/bin/bash
 
 set +x
+set -e
 
+#. .env_setup
 . ./echo_color.lib
 . ./sysEnv.lib
 
@@ -11,18 +13,18 @@ MAC=$(get_iether_MAC enp8s0)
 echoY ${IP}
 echoY ${MAC}
 
-OS_DISTRIBUTOR=$(os_distributor)
-echoY "os distributor: ${OS_DISTRIBUTOR}"
-OS_DISTRIBUTION_NUMBER=$(os_distribution_number)
-echoY "os distribution number: ${OS_DISTRIBUTION_NUMBER}"
-OS_DISTRIBUTION_NAME=$(os_distribution_name)
-echoY "os distribution name: ${OS_DISTRIBUTION_NAME}"
+echoY "os distributor: ${OSENV_DIST_ID}"
+echoY "os distribution number: ${OSENV_DIST_REL_NUM}"
+echoY "os distribution name: ${OSENV_DIST_CODENAME}"
+echoY "os package management: ${OSENV_PKG_MANAGE}"
+echoY "os kernel name: ${OSENV_KERNEL}"
+echoY "os arch: ${OSENV_OS_CPU_ARCH}"
 
-echoY "os arch name: $(os_arch)"
-echoY "docker arch: $(docker_arch)"
-echoY "docker tag arch: $(docker_tag_arch)"
+echo ""
 
-echoY "docker os type: $(docker_os)"
+echoY "docker os: ${OSENV_DOCKER_OS}"
+echoY "docker cpu arch: ${OSENV_DOCKER_CPU_ARCH}"
+echoY "docker tag cpu arch: ${OSENV_DOCKER_TAG_CPU_ARCH}"
 
 VAL_ARM_VERSION=$(arm_version)
 if [ -z ${VAL_ARM_VERSION} ]
