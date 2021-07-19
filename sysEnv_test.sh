@@ -18,6 +18,19 @@ echoY "os distribution number: ${OS_DISTRIBUTION_NUMBER}"
 OS_DISTRIBUTION_NAME=$(os_distribution_name)
 echoY "os distribution name: ${OS_DISTRIBUTION_NAME}"
 
+echoY "os arch name: $(os_arch)"
+echoY "docker arch: $(docker_arch)"
+echoY "docker tag arch: $(docker_tag_arch)"
+
+echoY "docker os type: $(docker_os)"
+
+VAL_ARM_VERSION=$(arm_version)
+if [ -z ${VAL_ARM_VERSION} ]
+then
+    echoR "CPU arch is not ARM!!!"
+else
+    echoY "CPU arm version: ${VAL_ARM_VERSION}"
+fi
 
 is_root_func
 echoG "Runing as root."

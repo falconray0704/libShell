@@ -34,4 +34,61 @@ get_iether_MAC()
     echo ${MAC_val}
 }
 
+docker_os()
+{
+    case $(uname -s) in
+    "Linux")
+        echo "linux"
+        ;;
+    *)
+        echoR "Unknown os: $(uname -s)"
+        exit 1
+    esac
+}
+
+os_arch()
+{
+    echo $(uname -m)
+}
+
+docker_arch()
+{
+    # refer to: https://github.com/docker-library/official-images#multiple-architectures
+    case $(os_arch) in
+    "x86_64")
+        echo "amd64"
+        ;;
+    "armv7l")
+        echo "arm32v7"
+        ;;
+    *)
+        echo ""
+    esac 
+}
+
+docker_tag_arch()
+{
+    # refer to the tags in: https://hub.docker.com/_/ubuntu?tab=tags&page=1&ordering=last_updated
+    case $(os_arch) in
+    "x86_64")
+        echo "amd64"
+        ;;
+    "armv7l")
+        echo "arm/v7"
+        ;;
+    *)
+        echo ""
+    esac 
+}
+
+arm_version()
+{
+    case $(os_arch) in
+    "armv7l")
+        echo "v7"
+        ;;
+    *)
+       echo ""
+    esac
+}
 
