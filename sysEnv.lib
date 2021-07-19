@@ -58,6 +58,20 @@ docker_arch()
         echo "amd64"
         ;;
     "armv7l")
+        echo "arm32v7"
+        ;;
+    *)
+        echo ""
+    esac 
+}
+
+docker_arch_name()
+{
+    case $(os_arch) in
+    "x86_64")
+        echo "amd64"
+        ;;
+    "armv7l")
         echo "arm"
         ;;
     *)
