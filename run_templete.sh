@@ -11,7 +11,7 @@ set -o errexit
 . ./echo_color.lib
 . ./utils.lib
 
-SUPPORTED_CMD="get,build"
+SUPPORTED_CMD="get,clean,build,release"
 SUPPORTED_TARGETS="source,doc"
 
 EXEC_CMD=""
@@ -22,9 +22,19 @@ get_source()
     echoY "Getting source..."
 }
 
+clean_source()
+{
+    echoY "Cleaning source..."
+}
+
 build_source()
 {
     echoY "Building source..."
+}
+
+release_source()
+{
+    echoY "Release source..."
 }
 
 get_doc()
@@ -32,27 +42,19 @@ get_doc()
     echoY "Getting doc..."
 }
 
+clean_doc()
+{
+    echoY "Cleaning doc..."
+}
+
 build_doc()
 {
     echoY "Building doc..."
 }
 
-
-
-get_items_func()
+release_doc()
 {
-    local exec_cmd=$1
-    local exec_items_list=$2
-
-    exec_items_iterator ${exec_cmd} ${exec_items_list} 
-}
-
-build_items_func()
-{
-    local exec_cmd=$1
-    local exec_items_list=$2
-
-    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+    echoY "Release doc..."
 }
 
 usage_func()
@@ -61,7 +63,9 @@ usage_func()
     echoY "Usage:"
     echoY './run_templete.sh -c <cmd> -l "<item list>"'
     echoY "eg:\n./run_templete.sh -c get -l \"source,doc\""
+    echoY "eg:\n./run_templete.sh -c clean -l \"source,doc\""
     echoY "eg:\n./run_templete.sh -c build -l \"source,doc\""
+    echoY "eg:\n./run_templete.sh -c release -l \"source,doc\""
 
     echoC "Supported cmd:"
     echo "${SUPPORTED_CMD}"
@@ -106,10 +110,16 @@ done
 
 case ${EXEC_CMD} in
     "get")
-        get_items_func ${EXEC_CMD} ${EXEC_ITEMS_LIST}
+        get_items ${EXEC_CMD} ${EXEC_ITEMS_LIST}
+        ;;
+    "clean")
+        clean_items ${EXEC_CMD} ${EXEC_ITEMS_LIST}
         ;;
     "build")
-        build_items_func ${EXEC_CMD} ${EXEC_ITEMS_LIST}
+        build_items ${EXEC_CMD} ${EXEC_ITEMS_LIST}
+        ;;
+    "release")
+        release_items ${EXEC_CMD} ${EXEC_ITEMS_LIST}
         ;;
     "*")
         echoR "Unsupport cmd:${EXEC_CMD}"
