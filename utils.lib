@@ -14,4 +14,37 @@ exec_items_iterator()
     done
 }
 
+get_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+clean_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+build_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+release_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+
 
