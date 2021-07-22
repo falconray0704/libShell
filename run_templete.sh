@@ -7,9 +7,17 @@ set -o errexit
 # trace each command execute with attachment infomations, same as `bash -x myscripts.sh`
 #set -o xtrace
 
+#set -o
+set -e
+#set -x
 
-. ./echo_color.lib
-. ./utils.lib
+export LIBSHELL_ROOT_PATH=${PWD}
+. ${LIBSHELL_ROOT_PATH}/echo_color.lib
+. ${LIBSHELL_ROOT_PATH}/utils.lib
+. ${LIBSHELL_ROOT_PATH}/sysEnv.lib
+. ./.env_setup
+
+
 
 SUPPORTED_CMD="get,clean,build,release"
 SUPPORTED_TARGETS="source,doc"
