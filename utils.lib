@@ -46,5 +46,30 @@ release_items()
     exec_items_iterator ${exec_cmd} ${exec_items_list} 
 }
 
+install_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+uninstall_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+backup_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+
 
 
