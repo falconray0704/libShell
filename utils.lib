@@ -70,6 +70,15 @@ backup_items()
     exec_items_iterator ${exec_cmd} ${exec_items_list} 
 }
 
+cfg_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
+
 
 
 
