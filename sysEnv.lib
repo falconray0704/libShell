@@ -1,4 +1,40 @@
 
+is_Ubuntu_x86_64_bionic()
+{
+    if ( [ ${OSENV_DIST_ID} == "Ubuntu" ] && \
+        [ ${OSENV_DIST_CODENAME} == "bionic" ] && \
+        [ ${OSENV_OS_CPU_ARCH} == "x86_64" ] )
+    then
+       echo 1;
+    else
+       echo 0;
+    fi
+}
+
+is_Pi3BP_Raspbian_aarch64_Debian_bullseye()
+{
+    if ( [ ${OSENV_DIST_ID} == "Debian" ] && \
+        [ ${OSENV_DIST_CODENAME} == "bullseye" ] && \
+        [ ${OSENV_OS_CPU_ARCH} == "aarch64" ] )
+    then
+       echo 1;
+    else
+       echo 0;
+    fi
+}
+
+is_Pi3BP_Raspbian_armv7l_Debian_bullseye()
+{
+    if ( [ ${OSENV_DIST_ID} == "Raspbian" ] && \
+        [ ${OSENV_DIST_CODENAME} == "bullseye" ] && \
+        [ ${OSENV_OS_CPU_ARCH} == "armv7l" ] )
+    then
+       echo 1;
+    else
+       echo 0;
+    fi
+}
+
 is_root_func()
 {
     if [[ $EUID -ne 0 ]]; then
@@ -21,9 +57,12 @@ get_iether_MAC()
 
 arm_version()
 {
-    case ${OSENV_CPU_ARCH} in
+    case ${OSENV_OS_CPU_ARCH} in
     "armv7l")
         echo "v7"
+        ;;
+    "aarch64")
+        echo "aarch64"
         ;;
     *)
        echo ""
