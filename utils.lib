@@ -110,6 +110,14 @@ cfg_items()
     exec_items_iterator ${exec_cmd} ${exec_items_list} 
 }
 
+deploy_items()
+{
+    local exec_cmd=$1
+    local exec_items_list=$2
+
+    exec_items_iterator ${exec_cmd} ${exec_items_list} 
+}
+
 pull_items()
 {
     local exec_cmd=$1
