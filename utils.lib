@@ -135,6 +135,20 @@ push_items()
 }
 
 
+exists_in_list() {
+    local LIST=$1
+    local DELIMITER=$2
+    local VALUE=$3
+    local LIST_WHITESPACES=`echo $LIST | tr "$DELIMITER" " "`
+
+
+    for x in $LIST_WHITESPACES; do
+        if [ "$x" = "$VALUE" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
 
 
 
