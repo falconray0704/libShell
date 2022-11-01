@@ -1,3 +1,14 @@
+is_Ubuntu_x86_64_jammy()
+{
+    if ( [ ${OSENV_DIST_ID} == "Ubuntu" ] && \
+        [ ${OSENV_DIST_CODENAME} == "jammy" ] && \
+        [ ${OSENV_OS_CPU_ARCH} == "x86_64" ] )
+    then
+       echo 1;
+    else
+       echo 0;
+    fi
+}
 
 is_Ubuntu_x86_64_bionic()
 {
